@@ -1,1 +1,91 @@
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="task1.css">
+    <link rel="text/js" href="style.css">
+</head>
+<body>
 
+<div class="content">
+ 
+    <div class="header">
+        <h1>MY To Do LIST</h1>
+        <input type="text" id="newinput" placeholder="Things to do......">
+        <span onclick="newElement()" class="InsertBtn">INSERT</span>
+      </div>
+      <div class="image1">
+      <ul id="newlist">
+        <li>Eating</li>
+        <li>Attend classes</li>
+        <li>Buy things</li>
+        <li>Swimming</li> 
+      </ul>
+      </div>
+    </div>
+
+
+<script>
+  
+  var myNodelist = document.getElementsByTagName("LI");
+  var i;
+  for (i = 0; i < myNodelist.length; i++)
+   {
+    var span = document.createElement("SPAN");
+    var item = document.createTextNode("\u00D7");
+    span.className = "close";
+    span.appendChild(item);
+    myNodelist[i].appendChild(span);
+  }
+  
+ 
+  var close = document.getElementsByClassName("close");
+  var i;
+  for (i = 0; i < close.length; i++) {
+    close[i].onclick = function() {
+      var div = this.parentElement;
+      div.style.display = "none";
+    }
+  }
+  
+ 
+  var list = document.querySelector('ul');
+  list.addEventListener('click', function(ev) {
+    if (ev.target.tagName === 'LI') {
+      ev.target.classList.toggle('checked');
+    }
+  }, false);
+  
+ 
+  function newElement() {
+    var li = document.createElement("li");
+    var inputValue = document.getElementById("newinput").value;
+    var t = document.createTextNode(inputValue);
+    li.appendChild(t);
+    if (inputValue === '')
+     {
+      alert("Add Something!");
+    } 
+    else
+     {
+      document.getElementById("newlist").appendChild(li);
+    }
+    document.getElementById("newinput").value = "";
+  
+    var span = document.createElement("SPAN");
+    var item = document.createTextNode("\u00D7");
+    span.className = "close";
+    span.appendChild(item);
+    li.appendChild(span);
+  
+    for (i = 0; i < close.length; i++)
+     {
+      close[i].onclick = function() 
+      {
+        var div = this.parentElement;
+        div.style.display = "none";
+      }
+    }
+  }
+  </script>
+
+</body>
+</html>
